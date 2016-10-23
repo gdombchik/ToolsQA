@@ -11,7 +11,7 @@ public class AbstractPage {
 	}
 	
 	public LandingPage navigateToWebApp(){
-		driver.navigate().to("http://angularjs.org");
+		driver.navigate().to("http://toolsqa.com/automation-practice-form");
 		return new LandingPage(driver);
 	}
 	

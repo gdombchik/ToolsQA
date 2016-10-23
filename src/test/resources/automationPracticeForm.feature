@@ -1,10 +1,22 @@
-Feature: To test the AngularJS website home page Copy.
+Feature: To test the ToolsQA Automation Practice Form page.
 
   Background: 
-    Given I am on the AngularJS website home page Copy.
+    Given I am on the ToolsQA home page.
 
-  @angularJSWebsiteCopy
-  Scenario: Test basic components on the AngularJS home page Copy.
-    When I confirm I am on the AngularJS website home page Copy.
-      | Field                          | Value                                    |
-      | DownLoad Angular JS One Button | Download AngularJS 1\n\n(1.5.8 / 1.2.30) |
+  @toolsQAAutomationPracticeForm
+  Scenario: Test the ToolsQA Automation Practice Form page.
+    When I select the Automation Practice Form menu option.
+    Then Confirm I am on the Automation Practice Form page.
+    	|Field			|	Value																					|
+    	|Page Title |	Demo Form for practicing Selenium Automation	|
+    And Select the Partial Link Test and confirm page values.
+    	|Field							|	Value																									|
+    	|Partial Link Test 	| Partial Link Test																			|
+    	|Partial Link Url		| http://toolsqa.wpengine.com/automation-practice-form/	|
+    	|Navigation Back Url| http://toolsqa.com/automation-practice-form/					|
+		Then Select the Link Test and confirm page values.
+    	|Field							|	Value																										|
+    	|Link Test 					| Link Test																								|
+    	|Link Url						| http://toolsqa.wpengine.com/automation-practice-table/	|
+    	|Navigation Back Url| http://toolsqa.com/automation-practice-form/						|
+  		

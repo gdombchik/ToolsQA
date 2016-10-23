@@ -3,9 +3,11 @@ package com.toolsqa.utils;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -76,4 +78,20 @@ public class WebDriverUtils{
 		}
 		return webElementReturned;
 	};
+	
+	public void checkConfirmTheValuesOfTheCurrentTodoItemsByMap(Collection<String> mapOfValues,List<WebElement> todoLabels){	
+		Assert.assertNotNull(todoLabels);  //check the WebElement List is not null
+		Assert.assertNotEquals(todoLabels.size(), 0);  //check the WebElement List is not zero
+		for(WebElement webElement : todoLabels){
+			Assert.assertNotNull(mapOfValues.contains(webElement.getText()));  //check the WebElement List exists in the Cucumber Datatable Map
+		}
+	}
+	
+	public void checkConfirmTheValuesOfTheCurrentTodoItemsByList(List<List<String>> tableList,List<WebElement> todoLabels){
+		int i = 1;
+		for(WebElement webElement : todoLabels){
+			Assert.assertTrue(webElement.getText().equals(tableList.get((i)).get(1)));
+			i++;
+		}		
+	}
 }
