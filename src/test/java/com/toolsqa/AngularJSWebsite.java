@@ -32,7 +32,7 @@ public class AngularJSWebsite extends AbstractPageStepDefinition{
 	private WireUpABackendPage wireUpABackendPage;
 	private CreateComponentsPage createComponentsPage;
 	
-	@After //Cucumber Scenario Hooks.  Close driver after each scenario.
+	@After("@angularJSWebsite,@angularJSWebsiteTestTheBasics,@angularJSWebsiteTestAddSomeControl,@angularJSWebsiteTestWireUpABackend,@angularJSWebsiteTestCreateComponents") //Cucumber Scenario Hooks.  Close driver after each scenario.
 	public void afterTest(){
 		landingPage.closeDriver();
 	}
