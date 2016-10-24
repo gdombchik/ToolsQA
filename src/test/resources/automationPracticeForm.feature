@@ -23,3 +23,4 @@ Feature: To test the ToolsQA Automation Practice Form page.
   		|Field								|	Value																									|
     	|First Name 					| Gregory																								|
     	|Last Name						| Dombchik																							|
+    Then Select the "Male" Sex radio button.
