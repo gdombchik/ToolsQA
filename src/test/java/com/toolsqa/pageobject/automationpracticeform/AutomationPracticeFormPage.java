@@ -29,7 +29,7 @@ public class AutomationPracticeFormPage extends AbstractPage{
 		//List<WebElement> webElements = driver.findElements(By.xpath("//ul[@id='primary-menu']/li[9]/a/span[1]/span/span"));
 		//List<WebElement> webElements = driver.findElements(By.xpath("//ul[@id='primary-menu']/li[9]"));
 			
-		/*FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver);
+		FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver);
 		wait.pollingEvery(250,  TimeUnit.MILLISECONDS);
 		wait.withTimeout(2, TimeUnit.MINUTES);
 		wait.ignoring(NoSuchElementException.class); //make sure that this exception is ignored
@@ -53,15 +53,15 @@ public class AutomationPracticeFormPage extends AbstractPage{
 					}
 				};
 
-		wait.until(predicate);*/
+		wait.until(predicate);
 		
-		WebElement demoSitesMenuOption = driver.findElement(By.partialLinkText("DEMO SITES"));
+		/*WebElement demoSitesMenuOption = driver.findElement(By.partialLinkText("DEMO SITES"));
 		Actions action = new Actions(driver); 
         action.moveToElement(demoSitesMenuOption).build().perform(); 
         WebElement subElement = driver.findElement(By.linkText("Automation Practice Form"));
         action.moveToElement(subElement);
         action.click();
-        action.perform();
+        action.perform();*/
 	}
 	
 	public String getAutomationPracticeFormCurrentUrl(){
