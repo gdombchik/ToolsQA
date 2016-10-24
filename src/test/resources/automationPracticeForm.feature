@@ -19,4 +19,7 @@ Feature: To test the ToolsQA Automation Practice Form page.
     	|Link Test 					| Link Test																								|
     	|Link Url						| http://toolsqa.wpengine.com/automation-practice-table/	|
     	|Navigation Back Url| http://toolsqa.com/automation-practice-form/						|
-  		
+    And Enter a First Name and Last Name and confirm page values.
+  		|Field								|	Value																									|
+    	|First Name 					| Gregory																								|
+    	|Last Name						| Dombchik																							|
