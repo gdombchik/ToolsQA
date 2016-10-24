@@ -84,7 +84,7 @@ public class AutomationPracticeFormPage extends AbstractPage{
 		return driver.findElement(By.name("lastname"));
 	}
 	
-	public WebElement getSexRadioButtons(String sexRadioButtonValue){
+	public WebElement selectSexRadioButton(String sexRadioButtonValue){
 		String value="";
 		if(sexRadioButtonValue.equals("Male")){
 			value = "0";
@@ -96,17 +96,33 @@ public class AutomationPracticeFormPage extends AbstractPage{
 	}
 	
 	public WebElement getSexRadioButtonValue(){
-		return driver.findElement(By.name("sex"));
+		List<WebElement> sexRadioButtons = driver.findElements(By.name("sex"));
+		WebElement sexRadioButtonValue = null;
+		
+		for(WebElement webElement : sexRadioButtons){
+			if(webElement.isSelected()){
+				sexRadioButtonValue = webElement;
+				break;
+			}
+		}
+		return sexRadioButtonValue;
 	}
 	
-	public WebElement getYearsOfExperienceRadioButtons(String yearsOfExperienceRadioButtonValue){
-		int intValue = new Long(yearsOfExperienceRadioButtonValue).intValue() - 1;
-		String value = new Long(intValue).toString();
-		System.out.println("v --> " + value);
+	public WebElement selectYearsOfExperienceRadioButton(String yearsOfExperienceRadioButtonValue){
+		String value = new Integer(new Integer(yearsOfExperienceRadioButtonValue).intValue() - 1).toString();
 		return driver.findElement(By.id("exp-" + value));
 	}
-	
+
 	public WebElement getYearsOfExperienceRadioButtonValue(){
-		return driver.findElement(By.name("exp"));
+		List<WebElement> YearsOfExperienceRadioButtons = driver.findElements(By.name("exp"));
+		WebElement yearsOfExperienceRadioButtonValue = null;
+		
+		for(WebElement webElement : YearsOfExperienceRadioButtons){
+			if(webElement.isSelected()){
+				yearsOfExperienceRadioButtonValue = webElement;
+				break;
+			}
+		}
+		return yearsOfExperienceRadioButtonValue;
 	}
 }

@@ -23,5 +23,5 @@ Feature: To test the ToolsQA Automation Practice Form page.
   		|Field								|	Value																									|
     	|First Name 					| Gregory																								|
     	|Last Name						| Dombchik																							|
-    Then Select the "Female" Sex radio button.
-    And Select the "7" Years of Experience radio button.
+    Then Select the "Male" Sex radio button.
+    And Select the "3" Years of Experience radio button.
