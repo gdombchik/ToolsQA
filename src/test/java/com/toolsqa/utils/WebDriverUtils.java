@@ -12,6 +12,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -20,6 +21,8 @@ import org.springframework.context.support.AbstractApplicationContext;
 
 import com.toolsqa.configuration.AppConfig;
 import com.toolsqa.service.FileService;
+
+import cucumber.api.Scenario;
 
 
 public class WebDriverUtils{
@@ -41,6 +44,15 @@ public class WebDriverUtils{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void takeStreenShot(Scenario scenario){
+		try{
+            final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+            scenario.embed(screenshot, "image/png"); //stick it in the report
+		}catch(WebDriverException somePlatformDontSupportScreenShots){
+			System.err.println(somePlatformDontSupportScreenShots.getMessage());
+		}    
 	}
 	
 	public WebElement waitUntilWebElementIsAvailable(By locator, int seconds){

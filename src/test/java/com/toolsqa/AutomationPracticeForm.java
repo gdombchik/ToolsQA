@@ -1,7 +1,10 @@
 package com.toolsqa;
 
 import org.junit.Assert;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 
 import com.toolsqa.pageobject.automationpracticeform.AutomationPracticeFormPage;
@@ -9,6 +12,7 @@ import com.toolsqa.pageobject.automationpracticeform.LandingPage;
 import com.toolsqa.utils.WebDriverUtils;
 
 import cucumber.api.DataTable;
+import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -22,7 +26,10 @@ public class AutomationPracticeForm extends AbstractPageStepDefinition {
 	private AutomationPracticeFormPage automationPracticeFormPage;
 	
 	@After("@toolsQAAutomationPracticeForm") //Cucumber Scenario Hooks.  Close driver after each scenario.
-	public void afterTest(){
+	public void afterTest(Scenario scenario){
+		if (scenario.isFailed()) {
+			webDriverUtils.takeStreenShot(scenario);
+		}
 		landingPage.closeDriver();
 	}
 	
@@ -36,15 +43,15 @@ public class AutomationPracticeForm extends AbstractPageStepDefinition {
 	@When("^I select the Automation Practice Form menu option\\.$")
 	public void iSelectTheAutomationPracticeFormMenuOption() throws Throwable {
 		automationPracticeFormPage = landingPage.navigateToTheAutomationPracticeFormPage();
-		automationPracticeFormPage.getAutomationPracticeFormMenuOption();
+		//automationPracticeFormPage.getAutomationPracticeFormMenuOption();
 	}
 	
 	@Then("^Confirm I am on the Automation Practice Form page\\.$")
 	public void confirmIAmOnTheAutomationPracticeFormPage(DataTable table) throws Throwable {
-		//Assert.assertTrue(table.asMap(String.class, String.class).values().contains(automationPracticeFormPage.getAutomationPracticeFormTitle()));
+		Assert.assertTrue(table.asMap(String.class, String.class).values().contains(automationPracticeFormPage.getAutomationPracticeFormCurrentUrl()));
 		
-		System.out.println("--> " + table.asMap(String.class, String.class).values());
-		System.out.println("--> " + automationPracticeFormPage.getAutomationPracticeFormTitle());
+		//System.out.println("--> " + table.asMap(String.class, String.class).values());
+		//System.out.println("--> " + automationPracticeFormPage.getAutomationPracticeFormCurrentUrl());
 		
 	}	
 	

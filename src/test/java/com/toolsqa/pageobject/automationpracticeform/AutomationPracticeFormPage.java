@@ -64,8 +64,8 @@ public class AutomationPracticeFormPage extends AbstractPage{
         action.perform();
 	}
 	
-	public String getAutomationPracticeFormTitle(){
-		return driver.getTitle();
+	public String getAutomationPracticeFormCurrentUrl(){
+		return driver.getCurrentUrl();
 	}
 	
 	public WebElement getPartialLinkTest(){

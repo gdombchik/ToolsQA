@@ -8,7 +8,7 @@ Feature: To test the ToolsQA Automation Practice Form page.
     When I select the Automation Practice Form menu option.
     Then Confirm I am on the Automation Practice Form page.
     	|Field			|	Value																					|
-    	|Page Title |	Demo Form for practicing Selenium Automation	|
+    	|Page Url	  |	http://toolsqa.com/automation-practice-form/	|
     And Select the Partial Link Test and confirm page values.
     	|Field							|	Value																									|
     	|Partial Link Test 	| Partial Link Test																			|
