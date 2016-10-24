@@ -84,11 +84,29 @@ public class AutomationPracticeFormPage extends AbstractPage{
 		return driver.findElement(By.name("lastname"));
 	}
 	
-	public List<WebElement> getSexRadioButtons(){
-		return driver.findElements(By.name("sex"));
+	public WebElement getSexRadioButtons(String sexRadioButtonValue){
+		String value="";
+		if(sexRadioButtonValue.equals("Male")){
+			value = "0";
+		}else if(sexRadioButtonValue.equals("Female")){
+			value = "1";
+		}	
+		return driver.findElement(By.id("sex-" + value));
+		
 	}
 	
 	public WebElement getSexRadioButtonValue(){
 		return driver.findElement(By.name("sex"));
+	}
+	
+	public WebElement getYearsOfExperienceRadioButtons(String yearsOfExperienceRadioButtonValue){
+		int intValue = new Long(yearsOfExperienceRadioButtonValue).intValue() - 1;
+		String value = new Long(intValue).toString();
+		System.out.println("v --> " + value);
+		return driver.findElement(By.id("exp-" + value));
+	}
+	
+	public WebElement getYearsOfExperienceRadioButtonValue(){
+		return driver.findElement(By.name("exp"));
 	}
 }

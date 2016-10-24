@@ -13,7 +13,7 @@ Feature: To test the ToolsQA Automation Practice Form page.
     	|Field							|	Value																									|
     	|Partial Link Test 	| Partial Link Test																			|
     	|Partial Link Url		| http://toolsqa.wpengine.com/automation-practice-form/	|
-    	|Navigation Back Url| http://toolsqa.com/automation-practice-form/					|
+    	|Navigation Back Url| http://toolsqa.com/automation-practice-form/					|	
 		Then Select the Link Test and confirm page values.
     	|Field							|	Value																										|
     	|Link Test 					| Link Test																								|
@@ -23,4 +23,5 @@ Feature: To test the ToolsQA Automation Practice Form page.
   		|Field								|	Value																									|
     	|First Name 					| Gregory																								|
     	|Last Name						| Dombchik																							|
-    Then Select the "Male" Sex radio button.
+    Then Select the "Female" Sex radio button.
+    And Select the "7" Years of Experience radio button.
