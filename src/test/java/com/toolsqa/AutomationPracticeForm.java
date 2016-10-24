@@ -36,10 +36,7 @@ public class AutomationPracticeForm extends AbstractPageStepDefinition {
 	@When("^I select the Automation Practice Form menu option\\.$")
 	public void iSelectTheAutomationPracticeFormMenuOption() throws Throwable {
 		automationPracticeFormPage = landingPage.navigateToTheAutomationPracticeFormPage();
-		//Thread.sleep(30000);
-		WebElement automationPracticeFormMenuOption = automationPracticeFormPage.getAutomationPracticeFormMenuOption();
-		//automationPracticeFormMenuOption.click();
-		System.out.println(driver.getCurrentUrl());
+		automationPracticeFormPage.getAutomationPracticeFormMenuOption();
 	}
 	
 	@Then("^Confirm I am on the Automation Practice Form page\\.$")
@@ -67,14 +64,12 @@ public class AutomationPracticeForm extends AbstractPageStepDefinition {
 		Assert.assertTrue(table.raw().get(3).get(1).equals(driver.getCurrentUrl()));
 	}
 	
-	@Then("^Enter a First Name and Last Name and confirm page values\\.$")
+	@And("^Enter a First Name and Last Name and confirm page values\\.$")
 	public void enterAFirstNameAndLastNameAndConfirmPageValues(DataTable table) throws Throwable {
 		WebElement firstName = automationPracticeFormPage.getFirstName();
 		WebElement lastName = automationPracticeFormPage.getLastName();
-		
 		firstName.sendKeys(table.raw().get(1).get(1));
 		lastName.sendKeys(table.raw().get(2).get(1));
-		
 		Assert.assertTrue(firstName.getAttribute("value").equals(table.raw().get(1).get(1)));
 		Assert.assertTrue(lastName.getAttribute("value").equals(table.raw().get(2).get(1)));
 	}
