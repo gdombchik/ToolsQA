@@ -43,7 +43,7 @@ public class AutomationPracticeForm extends AbstractPageStepDefinition {
 	@When("^I select the Automation Practice Form menu option\\.$")
 	public void iSelectTheAutomationPracticeFormMenuOption() throws Throwable {
 		automationPracticeFormPage = landingPage.navigateToTheAutomationPracticeFormPage();
-		//automationPracticeFormPage.getAutomationPracticeFormMenuOption();
+		automationPracticeFormPage.getAutomationPracticeFormMenuOption();
 	}
 	
 	@Then("^Confirm I am on the Automation Practice Form page\\.$")
