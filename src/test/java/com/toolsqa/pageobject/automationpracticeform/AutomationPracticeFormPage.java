@@ -165,4 +165,21 @@ public class AutomationPracticeFormPage extends AbstractPage{
 	public Select getContinentsDropDown(){
 		return new Select(driver.findElement(By.id("continents")));
 	}
+	
+	public Select getSeleniumCommandsMultiSelectDropDown(){
+		return new Select(driver.findElement(By.id("selenium_commands")));
+	}
+	
+	public List<WebElement> getSeleniumCommandsMultiselectDropdownOptions(){
+		List<WebElement> seleniumCommandsMultiselectDropdownListSelected = new ArrayList<WebElement>();
+		List<WebElement> seleniumCommandsMultiselectDropdownList = new Select(driver.findElement(By.id("selenium_commands"))).getAllSelectedOptions();
+		
+		for(WebElement webElement : seleniumCommandsMultiselectDropdownList){
+			if(webElement.isSelected()){
+				seleniumCommandsMultiselectDropdownListSelected.add(webElement);
+			}
+		}
+		
+		return seleniumCommandsMultiselectDropdownListSelected;
+	}
 }

@@ -36,6 +36,7 @@ public class AutomationPracticeForm extends AbstractPageStepDefinition {
 	private Map<String,String> professionCheckBoxes;
 	private WebElement theSeleniumAutomationHybridFrameworkLink;
 	private String continentsDropDownValue;
+	private List<List<String>> seleniumCommandsMultiselectDropdown;
 	
 	@After("@toolsQAAutomationPracticeForm") //Cucumber Scenario Hooks.  Close driver after each scenario.
 	public void afterTest(Scenario scenario){
@@ -169,5 +170,19 @@ public class AutomationPracticeForm extends AbstractPageStepDefinition {
 	public void verifyTheContinentsDropdown() throws Throwable {
 		WebElement selectedOptions = automationPracticeFormPage.getContinentsDropDown().getAllSelectedOptions().get(0);		
 		Assert.assertTrue(selectedOptions.getAttribute("value").equals(continentsDropDownValue));
+	}
+	
+	@Then("^Select the Selenium Commands multiselect dropdown\\.$")
+	public void selectTheSeleniumCommandsMultiselectDropdown(DataTable table) throws Throwable {
+		seleniumCommandsMultiselectDropdown = table.raw();
+		Select seleniumCommandsMultiSelectDropDown = automationPracticeFormPage.getSeleniumCommandsMultiSelectDropDown();
+		for(int i=1;i<4;i++){
+			seleniumCommandsMultiSelectDropDown.selectByVisibleText(table.raw().get(i).get(1));
+		}
+	}
+	
+	@Then("^Verify the Selenium Commands multiselect dropdown\\.$")
+	public void verifyTheSeleniumCommandsMultiselectDropdown() throws Throwable {	
+		webDriverUtils.checkConfirmTheValuesOfTheCurrentTodoItemsByList(seleniumCommandsMultiselectDropdown,automationPracticeFormPage.getSeleniumCommandsMultiselectDropdownOptions());		
 	}
 }

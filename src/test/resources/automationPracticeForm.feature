@@ -41,4 +41,10 @@
     	|Field							|	Value																																		|
     	|Url 								| http://toolsqa.wpengine.com/wp-content/uploads/2014/04/OnlineStore.zip 	|
     And Select the "Australia" option from the Continents dropdown.
-    Then Verify the Continents dropdown.		
+    Then Verify the Continents dropdown.
+    And Select the Selenium Commands multiselect dropdown.
+    	|Field								|	Value								|
+    	|Navigation Commands 	| Navigation Commands	|
+    	|Switch Commands 			| Switch Commands			|
+    	|Wait Commands 				| Wait Commands				|
+    Then Verify the Selenium Commands multiselect dropdown.			
