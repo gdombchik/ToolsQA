@@ -97,7 +97,7 @@ public class AutomationPracticeFormPage extends AbstractPage{
 		
 	}
 	
-	public WebElement getSexRadioButtonValue(){
+	public WebElement getSexRadioButton(){
 		List<WebElement> sexRadioButtons = driver.findElements(By.name("sex"));
 		WebElement sexRadioButtonValue = null;
 		
@@ -115,7 +115,7 @@ public class AutomationPracticeFormPage extends AbstractPage{
 		return driver.findElement(By.id("exp-" + value));
 	}
 
-	public WebElement getYearsOfExperienceRadioButtonValue(){
+	public WebElement getYearsOfExperienceRadioButton(){
 		List<WebElement> YearsOfExperienceRadioButtons = driver.findElements(By.name("exp"));
 		WebElement yearsOfExperienceRadioButtonValue = null;
 		
@@ -140,6 +140,19 @@ public class AutomationPracticeFormPage extends AbstractPage{
 			if(professionCheckBoxes.containsKey(professionCheckboxesList.get(i).getAttribute("value"))){
 				professionCheckboxesList.get(i).click();
 				professionCheckboxesListSelected.add(professionCheckboxesList.get(i));
+			}
+		}
+		
+		return professionCheckboxesListSelected;
+	}
+	
+	public List<WebElement> getProfessionCheckboxes(){
+		List<WebElement> professionCheckboxesListSelected = new ArrayList<WebElement>();
+		List<WebElement> professionCheckboxesList = driver.findElements(By.name("profession"));
+		
+		for(WebElement webElement : professionCheckboxesList){
+			if(webElement.isSelected()){
+				professionCheckboxesListSelected.add(webElement);
 			}
 		}
 		

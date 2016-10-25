@@ -1,6 +1,7 @@
 package com.toolsqa;
 
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
@@ -23,6 +24,15 @@ public class AutomationPracticeForm extends AbstractPageStepDefinition {
 	private WebDriverUtils webDriverUtils = new WebDriverUtils(driver);
 	private LandingPage landingPage;
 	private AutomationPracticeFormPage automationPracticeFormPage;
+	private WebElement partialLinkTest;
+	private WebElement linkTest;
+	private WebElement firstName;
+	private WebElement lastName;
+	private String sexRadioButtonValue;
+	private String yearsOfExperienceRadioButtonValue;
+	private WebElement date;
+	private String dateValue;
+	private Map<String,String> professionCheckBoxes;
 	
 	@After("@toolsQAAutomationPracticeForm") //Cucumber Scenario Hooks.  Close driver after each scenario.
 	public void afterTest(Scenario scenario){
@@ -34,29 +44,24 @@ public class AutomationPracticeForm extends AbstractPageStepDefinition {
 	
 	//Cucumber Background Script:
 	//The background script is ran before each of the scenarios, but after any of the Cucumber Scenario Before Hooks
-	@Given("^I am on the ToolsQA home page\\.$")
-	public void iAmOnTheToolsQAHomePage() throws Throwable {
+	@Given("^On the ToolsQA Automation Practice Form page\\.$")
+	public void onTheToolsQAAutomationPracticeFormPage() throws Throwable {
 		landingPage = new LandingPage(driver).navigateToWebApp();
-	}
-
-	@When("^I select the Automation Practice Form menu option\\.$")
-	public void iSelectTheAutomationPracticeFormMenuOption() throws Throwable {
 		automationPracticeFormPage = landingPage.navigateToTheAutomationPracticeFormPage();
-		//automationPracticeFormPage.getAutomationPracticeFormMenuOption();
 	}
 	
-	@Then("^Confirm I am on the Automation Practice Form page\\.$")
-	public void confirmIAmOnTheAutomationPracticeFormPage(DataTable table) throws Throwable {
+	@Then("^Verify on the Automation Practice Form page\\.$")
+	public void verifyOnTheAutomationPracticeFormPage(DataTable table) throws Throwable {
 		Assert.assertTrue(table.asMap(String.class, String.class).values().contains(automationPracticeFormPage.getAutomationPracticeFormCurrentUrl()));
-		
-		//System.out.println("--> " + table.asMap(String.class, String.class).values());
-		//System.out.println("--> " + automationPracticeFormPage.getAutomationPracticeFormCurrentUrl());
-		
 	}	
 	
-	@And("^Select the Partial Link Test and confirm page values\\.$")
-	public void selectThePartialLinkTestAndConfirmPageValues(DataTable table) throws Throwable {
-		WebElement partialLinkTest = automationPracticeFormPage.getPartialLinkTest();
+	@When("^Select the Partial Link Test\\.$")
+	public void selectThePartialLinkTest() throws Throwable {
+		partialLinkTest = automationPracticeFormPage.getPartialLinkTest();
+	}
+	
+	@Then("^Verify the Partial Link Test url\\.$")
+	public void verifyThePartialLinkTestUrl(DataTable table) throws Throwable {
 		Assert.assertTrue(table.raw().get(1).get(1).equals(partialLinkTest.getText()));
 		partialLinkTest.click();
 		Assert.assertTrue(table.raw().get(2).get(1).equals(driver.getCurrentUrl()));
@@ -64,9 +69,13 @@ public class AutomationPracticeForm extends AbstractPageStepDefinition {
 		Assert.assertTrue(table.raw().get(3).get(1).equals(driver.getCurrentUrl()));
 	}
 	
-	@Then("^Select the Link Test and confirm page values\\.$")
-	public void selectTheLinkTestAndConfirmPageValues(DataTable table) throws Throwable {
-		WebElement linkTest = automationPracticeFormPage.getLinkTest();
+	@And("^Select the Link Test\\.$")
+	public void selectTheLinkTest() throws Throwable {
+		linkTest = automationPracticeFormPage.getLinkTest();
+	}
+	
+	@Then("^Verify Link Test url\\.$")
+	public void verifyLinkTestUrl(DataTable table) throws Throwable {		
 		Assert.assertTrue(table.raw().get(1).get(1).equals(linkTest.getText()));
 		linkTest.click();
 		Assert.assertTrue(table.raw().get(2).get(1).equals(driver.getCurrentUrl()));
@@ -74,40 +83,65 @@ public class AutomationPracticeForm extends AbstractPageStepDefinition {
 		Assert.assertTrue(table.raw().get(3).get(1).equals(driver.getCurrentUrl()));
 	}
 	
-	@And("^Enter a First Name and Last Name and confirm page values\\.$")
-	public void enterAFirstNameAndLastNameAndConfirmPageValues(DataTable table) throws Throwable {
-		WebElement firstName = automationPracticeFormPage.getFirstName();
-		WebElement lastName = automationPracticeFormPage.getLastName();
+	@And("^Enter a First Name and Last Name\\.$")
+	public void enterAFirstNameAndLastName() throws Throwable {
+		firstName = automationPracticeFormPage.getFirstName();
+		lastName = automationPracticeFormPage.getLastName();
+	}
+	
+	@Then("^Verify First Name and Last Name\\.$")
+	public void verifyFirstNameAndLastName(DataTable table) throws Throwable {
 		firstName.sendKeys(table.raw().get(1).get(1));
 		lastName.sendKeys(table.raw().get(2).get(1));
 		Assert.assertTrue(firstName.getAttribute("value").equals(table.raw().get(1).get(1)));
 		Assert.assertTrue(lastName.getAttribute("value").equals(table.raw().get(2).get(1)));
 	}
 	
-	@Then("^Select the \"([^\"]*)\" Sex radio button\\.$")
+	@And("^Select the \"([^\"]*)\" Sex radio button\\.$")
 	public void selectTheSexRadioButton(String sexRadioButtonValue) throws Throwable {
+		this.sexRadioButtonValue = sexRadioButtonValue;
 		automationPracticeFormPage.selectSexRadioButton(sexRadioButtonValue).click();
-		Assert.assertTrue(automationPracticeFormPage.getSexRadioButtonValue().getAttribute("value").equals(sexRadioButtonValue));
+	}
+
+	@Then("^Verify Sex radio button\\.$")
+	public void verifySexRadioButton() throws Throwable {
+		Assert.assertTrue(automationPracticeFormPage.getSexRadioButton().getAttribute("value").equals(sexRadioButtonValue));
 	}
 	
 	@And("^Select the \"([^\"]*)\" Years of Experience radio button\\.$")
 	public void selectTheYearsOfExperienceRadioButton(String yearsOfExperienceRadioButtonValue) throws Throwable {
+		this.yearsOfExperienceRadioButtonValue = yearsOfExperienceRadioButtonValue;
 		automationPracticeFormPage.selectYearsOfExperienceRadioButton(yearsOfExperienceRadioButtonValue).click();
-		Assert.assertTrue(automationPracticeFormPage.getYearsOfExperienceRadioButtonValue().getAttribute("value").equals(yearsOfExperienceRadioButtonValue));
 	}
 	
-	@Then("^Enter the date \"([^\"]*)\" in the Date field\\.$")
+	@Then("^Verify Years of Experience radio button\\.$")
+	public void verifyYearsOfExperienceRadioButton() throws Throwable {
+		Assert.assertTrue(automationPracticeFormPage.getYearsOfExperienceRadioButton().getAttribute("value").equals(yearsOfExperienceRadioButtonValue));
+	}
+	
+	@And("^Enter the date \"([^\"]*)\" in the Date field\\.$")
 	public void enterTheDateInTheDateField(String dateValue) throws Throwable {
-		WebElement date = automationPracticeFormPage.getDate();
+		this.dateValue = dateValue;
+		date = automationPracticeFormPage.getDate();
 		date.sendKeys(dateValue);
+	}
+	
+	@Then("^Verify Date field\\.$")
+	public void verifyDateField() throws Throwable {
 		Assert.assertTrue(date.getAttribute("value").equals(dateValue));
 	}
 	
-	@Then("^Select the Profession check boxes\\.$")
-	public void selecTheProfessionCheckBoxes(DataTable table) throws Throwable {
-		List<WebElement> professionCheckboxesListSelected = automationPracticeFormPage.selectProfessionCheckboxes(table.asMap(String.class, String.class));
+	@And("^Select the Profession check boxes\\.$")
+	public void selectTheProfessionCheckBoxes(DataTable table) throws Throwable {
+		professionCheckBoxes = table.asMap(String.class, String.class);
+		automationPracticeFormPage.selectProfessionCheckboxes(professionCheckBoxes);
+	}
+	
+	@Then("^Verify the selected Profession check boxes\\.$")
+	public void verifyTheSelectedProfessionCheckBoxes() throws Throwable {
+		List<WebElement> professionCheckboxesListSelected = automationPracticeFormPage.getProfessionCheckboxes();
 		for(WebElement professionCheckbox : professionCheckboxesListSelected){
-			Assert.assertTrue(table.asMap(String.class, String.class).containsKey(professionCheckbox.getAttribute("value")));
+			Assert.assertTrue(professionCheckBoxes.containsKey(professionCheckbox.getAttribute("value")));
 		}
 	}
 }
