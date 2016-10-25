@@ -6,6 +6,7 @@ import java.util.Map;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import com.toolsqa.pageobject.automationpracticeform.AutomationPracticeFormPage;
 import com.toolsqa.pageobject.automationpracticeform.LandingPage;
@@ -34,6 +35,7 @@ public class AutomationPracticeForm extends AbstractPageStepDefinition {
 	private String dateValue;
 	private Map<String,String> professionCheckBoxes;
 	private WebElement theSeleniumAutomationHybridFrameworkLink;
+	private String continentsDropDownValue;
 	
 	@After("@toolsQAAutomationPracticeForm") //Cucumber Scenario Hooks.  Close driver after each scenario.
 	public void afterTest(Scenario scenario){
@@ -132,14 +134,14 @@ public class AutomationPracticeForm extends AbstractPageStepDefinition {
 		Assert.assertTrue(date.getAttribute("value").equals(dateValue));
 	}
 	
-	@And("^Select the Profession check boxes\\.$")
-	public void selectTheProfessionCheckBoxes(DataTable table) throws Throwable {
+	@And("^Select the Profession checkboxes\\.$")
+	public void selectTheProfessionCheckboxes(DataTable table) throws Throwable {
 		professionCheckBoxes = table.asMap(String.class, String.class);
 		automationPracticeFormPage.selectProfessionCheckboxes(professionCheckBoxes);
 	}
 	
-	@Then("^Verify the selected Profession check boxes\\.$")
-	public void verifyTheSelectedProfessionCheckBoxes() throws Throwable {
+	@Then("^Verify the selected Profession checkboxes\\.$")
+	public void verifyTheSelectedProfessionCheckboxes() throws Throwable {
 		List<WebElement> professionCheckboxesListSelected = automationPracticeFormPage.getProfessionCheckboxes();
 		for(WebElement professionCheckbox : professionCheckboxesListSelected){
 			Assert.assertTrue(professionCheckBoxes.containsKey(professionCheckbox.getAttribute("value")));
@@ -154,5 +156,18 @@ public class AutomationPracticeForm extends AbstractPageStepDefinition {
 	@Then("^Verify the Selenium Automation Hybrid Framework link url\\.$")
 	public void verifyTheLinkUrl(DataTable table) throws Throwable {
 		Assert.assertTrue(theSeleniumAutomationHybridFrameworkLink.getAttribute("href").equals(table.raw().get(1).get(1)));
+	}
+	
+	@And("^Select the \"([^\"]*)\" option from the Continents dropdown\\.$")
+	public void selectTheOptionFromTheContinentsDropdown(String option) throws Throwable {
+		continentsDropDownValue = option;
+		Select continentsDropDown = automationPracticeFormPage.getContinentsDropDown();
+		continentsDropDown.selectByVisibleText(option);
+	}
+
+	@Then("^Verify the Continents dropdown\\.$")
+	public void verifyTheContinentsDropdown() throws Throwable {
+		WebElement selectedOptions = automationPracticeFormPage.getContinentsDropDown().getAllSelectedOptions().get(0);		
+		Assert.assertTrue(selectedOptions.getAttribute("value").equals(continentsDropDownValue));
 	}
 }

@@ -31,12 +31,14 @@
     Then Verify Years of Experience radio button.
     And Enter the date "10/24/2016" in the Date field.
     Then Verify Date field.
-    And Select the Profession check boxes.
+    And Select the Profession checkboxes.
       |Field									|	Value								|
     	|Manual Tester 					| Manual Tester				|
     	|Automation Tester 			| Automation Tester		|
-    Then Verify the selected Profession check boxes.
+    Then Verify the selected Profession checkboxes.
     And Select the "Selenium Automation Hybrid Framework" link.	
     Then Verify the Selenium Automation Hybrid Framework link url.
     	|Field							|	Value																																		|
-    	|Url 								| http://toolsqa.wpengine.com/wp-content/uploads/2014/04/OnlineStore.zip 	|	
+    	|Url 								| http://toolsqa.wpengine.com/wp-content/uploads/2014/04/OnlineStore.zip 	|
+    And Select the "Australia" option from the Continents dropdown.
+    Then Verify the Continents dropdown.		

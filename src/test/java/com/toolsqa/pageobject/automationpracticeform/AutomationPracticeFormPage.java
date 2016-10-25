@@ -11,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Select;
 
 import com.google.common.base.Predicate;
 import com.toolsqa.utils.WebDriverUtils;
@@ -41,7 +42,6 @@ public class AutomationPracticeFormPage extends AbstractPage{
 						WebElement demoSitesMenuOption = driver.findElement(By.partialLinkText("DEMO SITES"));
 						if(demoSitesMenuOption != null)
 						{
-							System.out.println("Target element found");
 							Actions action = new Actions(driver); 
 					        action.moveToElement(demoSitesMenuOption).build().perform(); 
 					        WebElement subElement = driver.findElement(By.linkText("Automation Practice Form"));
@@ -50,7 +50,6 @@ public class AutomationPracticeFormPage extends AbstractPage{
 					        action.perform();
 					        return true;
 						}
-						System.out.println("Target element not found - GBD");
 						return false;
 					}
 				};
@@ -161,5 +160,9 @@ public class AutomationPracticeFormPage extends AbstractPage{
 	
 	public WebElement getTheSeleniumAutomationHybridFrameworkLink(String linkText){
 		return driver.findElement(By.linkText(linkText));
+	}
+	
+	public Select getContinentsDropDown(){
+		return new Select(driver.findElement(By.id("continents")));
 	}
 }
