@@ -182,4 +182,8 @@ public class AutomationPracticeFormPage extends AbstractPage{
 		
 		return seleniumCommandsMultiselectDropdownListSelected;
 	}
+	
+	public WebElement getSubmitButton(){
+		return driver.findElement(By.id("submit"));
+	}
 }

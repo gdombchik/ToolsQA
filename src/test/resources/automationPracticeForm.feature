@@ -47,4 +47,8 @@
     	|Navigation Commands 	| Navigation Commands	|
     	|Switch Commands 			| Switch Commands			|
     	|Wait Commands 				| Wait Commands				|
-    Then Verify the Selenium Commands multiselect dropdown.			
+    Then Verify the Selenium Commands multiselect dropdown.
+    And Select the Button.
+    Then Verify the query string.			
+    	|Field								|	Value								|
+    	|query string				 	| http://toolsqa.com/automation-practice-form/?firstname=Gregory&lastname=Dombchik&sex=Male&exp=3&profession=Manual+Tester&profession=Automation+Tester&continents=Australia&selenium_commands=Navigation+Commands&selenium_commands=Switch+Commands&selenium_commands=Wait+Commands&submit=	|

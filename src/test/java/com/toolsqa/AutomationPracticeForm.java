@@ -172,7 +172,7 @@ public class AutomationPracticeForm extends AbstractPageStepDefinition {
 		Assert.assertTrue(selectedOptions.getAttribute("value").equals(continentsDropDownValue));
 	}
 	
-	@Then("^Select the Selenium Commands multiselect dropdown\\.$")
+	@And("^Select the Selenium Commands multiselect dropdown\\.$")
 	public void selectTheSeleniumCommandsMultiselectDropdown(DataTable table) throws Throwable {
 		seleniumCommandsMultiselectDropdown = table.raw();
 		Select seleniumCommandsMultiSelectDropDown = automationPracticeFormPage.getSeleniumCommandsMultiSelectDropDown();
@@ -184,5 +184,17 @@ public class AutomationPracticeForm extends AbstractPageStepDefinition {
 	@Then("^Verify the Selenium Commands multiselect dropdown\\.$")
 	public void verifyTheSeleniumCommandsMultiselectDropdown() throws Throwable {	
 		webDriverUtils.checkConfirmTheValuesOfTheCurrentTodoItemsByList(seleniumCommandsMultiselectDropdown,automationPracticeFormPage.getSeleniumCommandsMultiselectDropdownOptions());		
+	}
+	
+	@And("^Select the Button\\.$")
+	public void select_the_Button() throws Throwable {
+		automationPracticeFormPage.getSubmitButton().click();
+		//System.out.println(driver.getCurrentUrl());
+	}
+	
+	@Then("^Verify the query string\\.$")
+	public void verify_the_query_string(DataTable table) throws Throwable {
+		Map<String,String> data = table.asMap(String.class,String.class);
+	    Assert.assertTrue(driver.getCurrentUrl().equals(data.get("query string")));
 	}
 }
