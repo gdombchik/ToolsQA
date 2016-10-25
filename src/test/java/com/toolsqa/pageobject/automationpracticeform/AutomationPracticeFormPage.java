@@ -158,4 +158,8 @@ public class AutomationPracticeFormPage extends AbstractPage{
 		
 		return professionCheckboxesListSelected;
 	}
+	
+	public WebElement getTheSeleniumAutomationHybridFrameworkLink(String linkText){
+		return driver.findElement(By.linkText(linkText));
+	}
 }

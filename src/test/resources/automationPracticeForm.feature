@@ -35,4 +35,8 @@
       |Field									|	Value								|
     	|Manual Tester 					| Manual Tester				|
     	|Automation Tester 			| Automation Tester		|
-    Then Verify the selected Profession check boxes.	
+    Then Verify the selected Profession check boxes.
+    And Select the "Selenium Automation Hybrid Framework" link.	
+    Then Verify the Selenium Automation Hybrid Framework link url.
+    	|Field							|	Value																																		|
+    	|Url 								| http://toolsqa.wpengine.com/wp-content/uploads/2014/04/OnlineStore.zip 	|	

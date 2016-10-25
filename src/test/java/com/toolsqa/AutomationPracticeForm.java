@@ -33,6 +33,7 @@ public class AutomationPracticeForm extends AbstractPageStepDefinition {
 	private WebElement date;
 	private String dateValue;
 	private Map<String,String> professionCheckBoxes;
+	private WebElement theSeleniumAutomationHybridFrameworkLink;
 	
 	@After("@toolsQAAutomationPracticeForm") //Cucumber Scenario Hooks.  Close driver after each scenario.
 	public void afterTest(Scenario scenario){
@@ -143,5 +144,15 @@ public class AutomationPracticeForm extends AbstractPageStepDefinition {
 		for(WebElement professionCheckbox : professionCheckboxesListSelected){
 			Assert.assertTrue(professionCheckBoxes.containsKey(professionCheckbox.getAttribute("value")));
 		}
+	}
+		
+	@And("^Select the \"([^\"]*)\" link\\.$")
+	public void selectThelink(String linkText) throws Throwable {
+		theSeleniumAutomationHybridFrameworkLink = automationPracticeFormPage.getTheSeleniumAutomationHybridFrameworkLink(linkText);
+	}
+
+	@Then("^Verify the Selenium Automation Hybrid Framework link url\\.$")
+	public void verifyTheLinkUrl(DataTable table) throws Throwable {
+		Assert.assertTrue(theSeleniumAutomationHybridFrameworkLink.getAttribute("href").equals(table.raw().get(1).get(1)));
 	}
 }
