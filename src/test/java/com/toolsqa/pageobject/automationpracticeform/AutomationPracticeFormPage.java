@@ -1,6 +1,8 @@
 package com.toolsqa.pageobject.automationpracticeform;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -128,5 +130,22 @@ public class AutomationPracticeFormPage extends AbstractPage{
 	
 	public WebElement getDate(){
 		return driver.findElement(By.id("datepicker"));
+	}
+	
+	public List<WebElement> selectProfessionCheckboxes(Map<String,String> professionCheckBoxes){
+		List<WebElement> professionCheckboxesListSelected = new ArrayList<WebElement>();
+		List<WebElement> professionCheckboxesList = driver.findElements(By.name("profession"));
+		
+		for(int i=0;i<professionCheckboxesList.size();i++){
+			if(professionCheckBoxes.containsKey(professionCheckboxesList.get(i).getAttribute("value"))){
+				professionCheckboxesList.get(i).click();
+				professionCheckboxesListSelected.add(professionCheckboxesList.get(i));
+				System.out.println("---->inside if");
+			}else{
+				System.out.println("---->inside else");
+			}
+		}
+		
+		return professionCheckboxesListSelected;
 	}
 }

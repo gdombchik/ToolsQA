@@ -26,3 +26,7 @@ Feature: To test the ToolsQA Automation Practice Form page.
     Then Select the "Male" Sex radio button.
     And Select the "3" Years of Experience radio button.
     Then Enter the date "10/24/2016" in the Date field.
+    And Select the Profession check boxes.
+      |Field									|	Value								|
+    	|Manual Tester 					| Manual Tester				|
+    	|Automation Tester 			| Automation Tester		|

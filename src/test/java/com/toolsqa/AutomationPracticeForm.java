@@ -1,10 +1,9 @@
 package com.toolsqa;
 
+import java.util.List;
+
 import org.junit.Assert;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 
 import com.toolsqa.pageobject.automationpracticeform.AutomationPracticeFormPage;
@@ -102,5 +101,13 @@ public class AutomationPracticeForm extends AbstractPageStepDefinition {
 		WebElement date = automationPracticeFormPage.getDate();
 		date.sendKeys(dateValue);
 		Assert.assertTrue(date.getAttribute("value").equals(dateValue));
+	}
+	
+	@Then("^Select the Profession check boxes\\.$")
+	public void selecTheProfessionCheckBoxes(DataTable table) throws Throwable {
+		List<WebElement> professionCheckboxesListSelected = automationPracticeFormPage.selectProfessionCheckboxes(table.asMap(String.class, String.class));
+		for(WebElement professionCheckbox : professionCheckboxesListSelected){
+			Assert.assertTrue(table.asMap(String.class, String.class).containsKey(professionCheckbox.getAttribute("value")));
+		}
 	}
 }
