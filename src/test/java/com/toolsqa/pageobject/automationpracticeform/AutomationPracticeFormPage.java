@@ -140,9 +140,6 @@ public class AutomationPracticeFormPage extends AbstractPage{
 			if(professionCheckBoxes.containsKey(professionCheckboxesList.get(i).getAttribute("value"))){
 				professionCheckboxesList.get(i).click();
 				professionCheckboxesListSelected.add(professionCheckboxesList.get(i));
-				System.out.println("---->inside if");
-			}else{
-				System.out.println("---->inside else");
 			}
 		}
 		

@@ -95,7 +95,7 @@ public class WebDriverUtils{
 		Assert.assertNotNull(todoLabels);  //check the WebElement List is not null
 		Assert.assertNotEquals(todoLabels.size(), 0);  //check the WebElement List is not zero
 		for(WebElement webElement : todoLabels){
-			Assert.assertNotNull(mapOfValues.contains(webElement.getText()));  //check the WebElement List exists in the Cucumber Datatable Map
+			Assert.assertTrue(mapOfValues.contains(webElement.getText()) || mapOfValues.contains(webElement.getAttribute("textContent")));  //check the WebElement List exists in the Cucumber Datatable Map
 		}
 	}
 	
