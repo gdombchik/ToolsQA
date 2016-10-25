@@ -125,4 +125,8 @@ public class AutomationPracticeFormPage extends AbstractPage{
 		}
 		return yearsOfExperienceRadioButtonValue;
 	}
+	
+	public WebElement getDate(){
+		return driver.findElement(By.id("datepicker"));
+	}
 }

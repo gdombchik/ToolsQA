@@ -25,3 +25,4 @@ Feature: To test the ToolsQA Automation Practice Form page.
     	|Last Name						| Dombchik																							|
     Then Select the "Male" Sex radio button.
     And Select the "3" Years of Experience radio button.
+    Then Enter the date "10/24/2016" in the Date field.

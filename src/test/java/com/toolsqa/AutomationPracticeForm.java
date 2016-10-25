@@ -86,14 +86,21 @@ public class AutomationPracticeForm extends AbstractPageStepDefinition {
 	}
 	
 	@Then("^Select the \"([^\"]*)\" Sex radio button\\.$")
-	public void select_the_Sex_radio_button(String sexRadioButtonValue) throws Throwable {
+	public void selectTheSexRadioButton(String sexRadioButtonValue) throws Throwable {
 		automationPracticeFormPage.selectSexRadioButton(sexRadioButtonValue).click();
 		Assert.assertTrue(automationPracticeFormPage.getSexRadioButtonValue().getAttribute("value").equals(sexRadioButtonValue));
 	}
 	
-	@Then("^Select the \"([^\"]*)\" Years of Experience radio button\\.$")
+	@And("^Select the \"([^\"]*)\" Years of Experience radio button\\.$")
 	public void selectTheYearsOfExperienceRadioButton(String yearsOfExperienceRadioButtonValue) throws Throwable {
 		automationPracticeFormPage.selectYearsOfExperienceRadioButton(yearsOfExperienceRadioButtonValue).click();
 		Assert.assertTrue(automationPracticeFormPage.getYearsOfExperienceRadioButtonValue().getAttribute("value").equals(yearsOfExperienceRadioButtonValue));
+	}
+	
+	@Then("^Enter the date \"([^\"]*)\" in the Date field\\.$")
+	public void enterTheDateInTheDateField(String dateValue) throws Throwable {
+		WebElement date = automationPracticeFormPage.getDate();
+		date.sendKeys(dateValue);
+		Assert.assertTrue(date.getAttribute("value").equals(dateValue));
 	}
 }
