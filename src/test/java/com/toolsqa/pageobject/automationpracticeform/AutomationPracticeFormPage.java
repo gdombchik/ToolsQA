@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -14,9 +16,11 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 
 import com.google.common.base.Predicate;
+import com.toolsqa.AutomationPracticeForm;
 import com.toolsqa.utils.WebDriverUtils;
 
 public class AutomationPracticeFormPage extends AbstractPage{
+	private static final Logger logger = LogManager.getLogger(AutomationPracticeForm.class.getName());
 	WebDriverUtils webDriverUtils = new WebDriverUtils(driver);
 
 	public AutomationPracticeFormPage(WebDriver driver) {
@@ -66,6 +70,7 @@ public class AutomationPracticeFormPage extends AbstractPage{
 	}
 	
 	public String getAutomationPracticeFormCurrentUrl(){
+		logger.trace("getAutomationPracticeFormCurrentUrl-----> " + driver.getCurrentUrl());
 		return driver.getCurrentUrl();
 	}
 	

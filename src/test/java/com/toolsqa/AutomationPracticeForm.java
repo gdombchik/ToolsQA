@@ -20,7 +20,11 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class AutomationPracticeForm extends AbstractPageStepDefinition {
+	private static final Logger logger = LogManager.getLogger(AutomationPracticeForm.class.getName());
 	private WebDriver driver = getWebdriver();
 	private WebDriverUtils webDriverUtils = new WebDriverUtils(driver);
 	private LandingPage landingPage;
@@ -56,6 +60,7 @@ public class AutomationPracticeForm extends AbstractPageStepDefinition {
 	
 	@Then("^Verify on the Automation Practice Form page\\.$")
 	public void verifyOnTheAutomationPracticeFormPage(DataTable table) throws Throwable {
+		logger.trace("verifyOnTheAutomationPracticeFormPage-----> " + automationPracticeFormPage.getAutomationPracticeFormCurrentUrl());
 		Assert.assertTrue(table.asMap(String.class, String.class).values().contains(automationPracticeFormPage.getAutomationPracticeFormCurrentUrl()));
 	}	
 	
