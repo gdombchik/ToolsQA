@@ -186,4 +186,8 @@ public class AutomationPracticeFormPage extends AbstractPage{
 	public WebElement getSubmitButton(){
 		return driver.findElement(By.id("submit"));
 	}
+	
+	public List<WebElement> getTextLabels(){
+		return driver.findElements(By.xpath("id('NextedText')"));
+	}
 }

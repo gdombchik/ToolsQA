@@ -189,12 +189,21 @@ public class AutomationPracticeForm extends AbstractPageStepDefinition {
 	@And("^Select the Button\\.$")
 	public void select_the_Button() throws Throwable {
 		automationPracticeFormPage.getSubmitButton().click();
-		//System.out.println(driver.getCurrentUrl());
 	}
 	
 	@Then("^Verify the query string\\.$")
 	public void verify_the_query_string(DataTable table) throws Throwable {
 		Map<String,String> data = table.asMap(String.class,String.class);
 	    Assert.assertTrue(driver.getCurrentUrl().equals(data.get("query string")));
+	}
+		
+	@Then("^Verify text labels\\.$")
+	public void verify_text_labels(DataTable table) throws Throwable {
+		//webDriverUtils.checkConfirmTheValuesOfTheCurrentTodoItemsByList(table.raw(), automationPracticeFormPage.getTextLabels());
+		//Assert.assertTrue(automationPracticeFormPage.getTextLabels().equals("Text1<br>Text2"));
+		
+		for(WebElement webElement : automationPracticeFormPage.getTextLabels()){
+			System.out.println(webElement.getText());
+		}
 	}
 }

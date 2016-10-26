@@ -52,3 +52,8 @@
     Then Verify the query string.			
     	|Field								|	Value								|
     	|query string				 	| http://toolsqa.com/automation-practice-form/?firstname=Gregory&lastname=Dombchik&sex=Male&exp=3&profession=Manual+Tester&profession=Automation+Tester&continents=Australia&selenium_commands=Navigation+Commands&selenium_commands=Switch+Commands&selenium_commands=Wait+Commands&submit=	|
+    And Verify text labels.
+    	|Field								|	Value								|
+    	|Text1 								| Text1								|
+    	|Text2 								| Text2								|
+    	
