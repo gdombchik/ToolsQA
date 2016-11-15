@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -134,6 +135,24 @@ public class AutomationPracticeFormPage extends AbstractPage{
 	
 	public WebElement getDate(){
 		return driver.findElement(By.id("datepicker"));
+	}
+	
+	public WebElement getDateByDOMGetElementById(){
+		return webDriverUtils.getWebElementByJavaScript("document.getElementById('datepicker')");
+	}
+	
+	public WebElement getDateByJQuery(){
+		return webDriverUtils.getWebElementByJavaScript("$('#datepicker')[0]");
+	}
+	
+	public List<WebElement> getDateByDOMGetElementsByTagName(){
+		//JavaScript -- Tested in FireFox Console.  Array length is 20 
+		//document.getElementsByTagName("p").length
+		
+		//WebElements size is 20
+		//System.out.println("---------------->" + automationPracticeFormPage.getDateByDOMGetElementsByTagName().size());
+		
+		return webDriverUtils.getWebElementsByJavaScript("document.getElementsByTagName('p')");
 	}
 	
 	public List<WebElement> selectProfessionCheckboxes(Map<String,String> professionCheckBoxes){

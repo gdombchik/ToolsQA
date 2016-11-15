@@ -9,6 +9,7 @@ import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -105,5 +106,13 @@ public class WebDriverUtils{
 			Assert.assertTrue(webElement.getText().equals(tableList.get((i)).get(1)));
 			i++;
 		}		
+	}
+	
+	public WebElement getWebElementByJavaScript(String javaScript){
+		return (WebElement) ((JavascriptExecutor)driver).executeScript("return " + javaScript);
+	}
+	
+	public List<WebElement> getWebElementsByJavaScript(String javaScript){
+		return (List<WebElement>)  ((JavascriptExecutor)driver).executeScript("return " + javaScript);
 	}
 }
